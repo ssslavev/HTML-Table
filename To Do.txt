@@ -1,0 +1,5 @@
+﻿fix all errors in the javasript/html files so the table can be rendered correctly
+fix the first column of the grid to show labels
+remove Materialize and replace it with Bootstrap in the table rendering.
+add button "preview" for each row, button click must show a popup cotaining all data available for the coresponding row
+inprove the look of the page as much as you can

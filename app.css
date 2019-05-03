@@ -1,0 +1,67 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+}
+
+
+table {
+    margin-top: 25px;
+}
+
+#del {
+    margin-left: 15px;
+    
+}
+
+#preview {
+    margin-left: 15px;
+}
+
+#NEW {
+    width: 150px;
+    font-weight: bold;
+}
+
+i.fas {
+    margin-left: 5px;
+}
+
+span {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.data {
+    font-weight: bold;
+}
+
+.modal-body p {
+    font-weight: bold;
+    text-align: left;
+}
+
+
+table tr td:first-child + td, table tr th:first-child + th {
+    max-width: 60px;
+}
+
+table tr td:first-child + td + td, table tr th:first-child + th + th {
+    max-width: 100px;
+}
+
+table tr td:first-child + td + td + td + td, table tr th:first-child + th + th + th + th {
+    max-width: 100px;
+}
+
+
+td.badge {
+    margin-top: 8px;
+}
+
+
+
+input[type=text] {
+    max-width: 80%;
+}
