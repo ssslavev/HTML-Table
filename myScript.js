@@ -102,6 +102,7 @@ var my;
         function ctlButton(label, onClickHandler) {
             _super.call(this, '');
             this.value = label;
+            this.onClickHandler = onClickHandler;
             if (this.value === 'edit' || this.value === 'NEW') {
                 this.css.className = 'btn btn-success';
             } else if (this.value === 'del') {
@@ -109,7 +110,7 @@ var my;
             } else if (this.value === 'preview') {
                 this.css.className = 'btn btn-primary';
             }
-            this.onClickHandler = onClickHandler;
+
         };
 
         ctlButton.prototype.create = function () {
@@ -119,30 +120,14 @@ var my;
             elHTML.id = this.value;
             elHTML.className = this.css.className;
             elHTML.style.cssText = this.css.style;
-            //  if (this.onClickHandler == undefined) {
-            //      elHTML.addEventListener("click", function (e) {
-            //          console.log(e)
-            //         //ctl.onClickHandler(e, ctl.data);
-            //     }, false);
-            // };
 
 
-            elHTML.addEventListener('click', function (e) {
-                var clName = e.target.className
+            if (this.onClickHandler !== undefined) {
+                elHTML.addEventListener("click", function (e) {
+                    ctl.onClickHandler(e, ctl.data);
+                });
+            };
 
-                if (clName.includes('btn-primary')) {
-                    $('#myModal').modal('show');
-                    var childs = e.target.parentNode.parentNode.parentNode.childNodes;
-
-                    var info = `<p> RecNo:  ${childs[1].innerText} </p>
-                                <p> ID:  ${childs[2].innerText} </p>
-                                <p> SerialNo:  ${childs[3].innerText} </p>
-                                <p> DeviceID:  ${childs[4].innerText} </p>
-                                <p> CreatedOn:  ${childs[5].innerText} </p>`;
-
-                    $('#myModal').find('.modal-body').html(info);
-                }
-            })
             elHTML.appendChild(this.iconGet());
             return elHTML;
         };
@@ -508,6 +493,7 @@ var my;
             if (row.data !== undefined) {
                 value = row.data[this.id];
 
+
             }
             var elHTML = document.createElement('div');
             var btnLabel = value;
@@ -531,8 +517,24 @@ var my;
                     break;
                 default:
                     elHTML = btn.create();
-
             }
+            function handler(e, data) {
+                var clName = e.target.className
+
+                if (clName.includes('btn-primary')) {
+                    $('#myModal').modal('show');
+                    var childs = e.target.parentNode.parentNode.parentNode.childNodes;
+
+                    var info = `<p> RecNo:  ${childs[1].innerText} </p>
+            <p> ID:  ${childs[2].innerText} </p>
+            <p> SerialNo:  ${childs[3].innerText} </p>
+            <p> DeviceID:  ${childs[4].innerText} </p>
+            <p> CreatedOn:  ${childs[5].innerText} </p>`;
+
+                    $('#myModal').find('.modal-body').html(info);
+                }
+            }
+
             function addBtnEdit(parent) {
                 // if (options.alowedit === false) {return}
                 var btn = new my.ctlButton('edit', undefined);
@@ -548,7 +550,7 @@ var my;
             }
             function addBtnPreview(parent) {
                 // if (options.alowedit === false) {return}
-                var btn = new my.ctlButton('preview', undefined);
+                var btn = new my.ctlButton('preview', handler);
                 btn.icon = 'fas fa-search';
                 parent.appendChild(btn.create());
             }
