@@ -1,5 +1,7 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
+    background: url('./images/css-lattice-pattern.png') no-repeat center center fixed;
+    background-size: 100% 100%;
 }
 
 span {
@@ -9,6 +11,11 @@ span {
 
 table {
     margin-top: 25px;
+    background-color: #fff;
+}
+
+h1  {
+    color: #fff;
 }
 
 #del {
